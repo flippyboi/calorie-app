@@ -1,42 +1,23 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+::view-transition-group(root) {
+  animation-timing-function: var(--expo-out);
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+::view-transition-new(root) {
+  mask: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 40"><defs><filter id="blur"><feGaussianBlur stdDeviation="2"/></filter></defs><circle cx="0" cy="0" r="18" fill="white" filter="url(%23blur)"/></svg>') top left / 0 no-repeat;
+  mask-origin: content-box;
+  animation: scale 0.5s;
+  transform-origin: top left;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+::view-transition-old(root),
+  .dark::view-transition-old(root) {
+  animation: scale 0.5s;
+  transform-origin: top left;
+  z-index: -1;
+}
+
+@keyframes scale {
   to {
-    transform: rotate(360deg);
+    mask-size: 350vmax;
   }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }

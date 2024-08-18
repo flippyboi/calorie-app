@@ -31,6 +31,7 @@ const tseslintConfig = tseslint.config(
         { allowConstantExport: true },
       ],
       "prettier/prettier": "error",
+      "@typescript-eslint/no-explicit-any": "off"
     },
   }
 )

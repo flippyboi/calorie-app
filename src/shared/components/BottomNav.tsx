@@ -1,47 +1,19 @@
 import { Link, useMatches } from 'react-router-dom';
-import { BookA, Calendar, Columns, ForkKnife, User } from 'lucide-react';
 import { cn } from '../lib/utils';
+import { NavItem } from '../lib/types';
 
-const navElements = [
-    {
-        to: '/',
-        icon: <Calendar />,
-        title: 'Обзор',
-    },
-    {
-        to: '/statistics',
-        icon: <Columns />,
-        title: 'Статистика',
-    },
-    {
-        to: '/recipes',
-        icon: <BookA />,
-        title: 'Рецепты',
-    },
-    {
-        to: '/dishes',
-        icon: <ForkKnife />,
-        title: 'Мои блюда',
-    },
-    {
-        to: '/profile',
-        icon: <User />,
-        title: 'Мой профиль',
-    },
-];
-
-export const BottomNav = () => {
+export const BottomNav = ({ items }: { items: NavItem[] }) => {
     const [, currentRoute] = useMatches();
 
     const isActive = (route: string) => route === currentRoute?.pathname;
 
     return (
         <nav className="fixed bottom-0 left-0 right-0 flex justify-around text-sm bg-secondary">
-            {navElements.map((el, index) => (
+            {items.map((el, index) => (
                 <Link
                     className={cn(
-                        'flex flex-col items-center text-wrap max-w-[20%] text-center justify-center leading-none p-2',
-                        isActive(el.to) && 'text-primary',
+                        'flex flex-col items-center text-wrap max-w-[20%] text-center font-semibold justify-center leading-none p-2',
+                        isActive(el.to) && 'text-primary scale-85',
                     )}
                     key={el.to + index}
                     to={el.to}

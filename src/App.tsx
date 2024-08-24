@@ -3,6 +3,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { RequireAuth } from './shared/components/RequireAuth';
 import { Main } from './pages/Main/Main';
 import { Layout } from './shared/components/Layout';
+import Recipes from './pages/Recipes/Recipes';
+import Profile from './pages/Profile/Profile';
+import Login from './pages/Login/Login';
 
 const router = createBrowserRouter([
     {
@@ -27,19 +30,19 @@ const router = createBrowserRouter([
             },
             {
                 path: '/recipes',
-                element: <div>recipes</div>,
+                element: <Recipes />,
             },
             {
                 path: '/profile',
                 element: (
                     <RequireAuth>
-                        <div>profile</div>
+                        <Profile />
                     </RequireAuth>
                 ),
             },
             {
                 path: '/login',
-                element: <div>login</div>,
+                element: <Login />,
             },
         ],
     },

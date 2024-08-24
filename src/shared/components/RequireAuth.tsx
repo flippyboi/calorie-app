@@ -1,14 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-const isAuth = false;
+const isAuth = true;
 
 export const RequireAuth = ({ children }: { children: React.ReactNode }) => {
-    const navigate = useNavigate();
-
     if (!isAuth) {
-        navigate('/login');
+        return <Navigate to="/login" />;
     }
 
-    return <>{children}</>;
+    return children;
 };

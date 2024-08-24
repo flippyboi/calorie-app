@@ -1,0 +1,30 @@
+@keyframes shrink {
+    from {
+        height: 4rem;
+    }
+    to {
+        height: 2rem;
+    }
+}
+
+@keyframes scale {
+    from {
+        font-size: 1.5rem;
+    }
+    to {
+        font-size: 1rem;
+    }
+}
+
+.header, .header h1 {
+    animation-timeline: scroll();
+    animation-range: 0 16rem;
+}
+
+.header {
+    animation-name: shrink;
+
+    h1 {
+        animation-name: scale;
+    }
+}

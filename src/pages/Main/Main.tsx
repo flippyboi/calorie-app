@@ -1,42 +1,55 @@
+import { Button } from '@/shared/components/ui/button';
+import { DatePicker } from '@/shared/components/ui/datepicker';
+import { Nutrients } from '@/widgets/Nutrients';
+import { OverviewStat } from '@/widgets/OverviewStat';
+import { addDays, isSameDay, subDays } from 'date-fns';
+import { ChevronLeft, ChevronRight, Flame, GlassWater, Scale } from 'lucide-react';
+import React from 'react';
+
+const today = new Date();
+
 export const Main = () => {
+    const [date, setDate] = React.useState<Date>(today);
     return (
         <div className="flex flex-col space-y-4">
-            <div className="flex justify-between items-center">
-                <button className="p-2 bg-primary text-white rounded">&lt;</button>
-                <span className="text-lg font-semibold">Сегодня</span>
-                <button className="p-2 bg-primary text-white rounded">&gt;</button>
+            <div className="sticky top-0 z-10 flex items-center justify-between gap-4 py-2 bg-background">
+                <Button
+                    variant={'outline'}
+                    size={'icon'}
+                    onClick={() => setDate(prev => subDays(prev, 1))}
+                >
+                    <ChevronLeft />
+                </Button>
+                <DatePicker date={date} setDate={setDate} />
+                <Button
+                    variant={'outline'}
+                    size={'icon'}
+                    onClick={() => setDate(prev => addDays(prev, 1))}
+                    disabled={isSameDay(date, today)}
+                >
+                    <ChevronRight />
+                </Button>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-                <div className="bg-secondary p-4 rounded">
-                    <h2 className="text-lg font-semibold">Потребленные калории</h2>
-                    <p>1500 ккал</p>
-                </div>
-                <div className="bg-secondary p-4 rounded">
-                    <h2 className="text-lg font-semibold">Расход калорий</h2>
-                    <p>2000 ккал</p>
-                </div>
-                <div className="bg-secondary p-4 rounded">
-                    <h2 className="text-lg font-semibold">Вода</h2>
-                    <p>Выпито: 1.5 л</p>
-                </div>
-                <div className="bg-secondary p-4 rounded">
-                    <h2 className="text-lg font-semibold">Вес</h2>
-                    <p>Текущий: 70 кг</p>
-                </div>
+            <div className="grid grid-cols-1 gap-4">
+                <OverviewStat
+                    goal={2000}
+                    title="Потребленные калории"
+                    value={2000}
+                    icon={<Flame />}
+                    unit="ккал"
+                />
+                <OverviewStat
+                    goal={2000}
+                    title="Расход калорий"
+                    value={2000}
+                    icon={<Flame />}
+                    unit="ккал"
+                />
+                <OverviewStat goal={2000} title="Вода" value={1.5} icon={<GlassWater />} unit="л" />
+                <OverviewStat goal={2000} title="Вес" value={70} icon={<Scale />} unit="кг" />
             </div>
-
-            <div className="bg-secondary p-4 rounded">
-                <h2 className="text-lg font-semibold mb-2">Нутриенты</h2>
-                <div className="grid grid-cols-3 gap-2">
-                    <p>Белки: 80 г</p>
-                    <p>Жиры: 60 г</p>
-                    <p>Углеводы: 200 г</p>
-                    <p>Клетчатка: 25 г</p>
-                    <p>Сахар: 30 г</p>
-                    <p>Соль: 5 г</p>
-                </div>
-            </div>
+            <Nutrients />
         </div>
     );
 };

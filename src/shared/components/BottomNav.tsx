@@ -8,7 +8,7 @@ export const BottomNav = ({ items }: { items: NavItem[] }) => {
     const isActive = (route: string) => route === currentRoute?.pathname;
 
     return (
-        <nav className="fixed bottom-0 left-0 right-0 flex justify-around text-sm bg-secondary">
+        <nav className="sticky bottom-0 flex justify-around text-sm bg-secondary/80 backdrop-blur-md">
             {items.map((el, index) => (
                 <Link
                     className={cn(

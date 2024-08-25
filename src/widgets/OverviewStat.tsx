@@ -2,6 +2,8 @@ import { Button } from '@/shared/components/ui/button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/shared/components/ui/card';
 import { ChevronRight } from 'lucide-react';
 
+import './styles.css';
+
 type OverviewStatProps = {
     title: string;
     value: number;
@@ -12,7 +14,7 @@ type OverviewStatProps = {
 
 export const OverviewStat = ({ title, value, icon, unit, goal }: OverviewStatProps) => {
     return (
-        <Card className="relative flex flex-col justify-between transition-all duration-300 active:scale-[0.97] hover:shadow-md">
+        <Card className="relative flex flex-col justify-between transition-all duration-300 active:scale-[0.97] shadow-md card">
             <CardHeader className="p-4">
                 <CardTitle className="flex items-center gap-2 text-base">
                     <div className="w-5 h-5">{icon}</div>

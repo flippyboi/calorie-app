@@ -1,0 +1,14 @@
+@keyframes card {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0.5;
+    }
+}
+
+.card {
+    animation-timeline: scroll();
+    animation-name: card;
+    animation-range: 0 100dvh;
+}
